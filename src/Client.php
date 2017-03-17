@@ -10,6 +10,7 @@ use Markette\GopayInline\Http\Http;
 use Markette\GopayInline\Http\HttpClient;
 use Markette\GopayInline\Http\Request;
 use Markette\GopayInline\Http\Response;
+use Markette\GopayInline\Service\AuthenticationService;
 use Markette\GopayInline\Service\PaymentsService;
 
 /**
@@ -32,6 +33,7 @@ class Client
 
     /** @var array */
     private static $services = [
+    	'authentication',
         'payments',
     ];
 
@@ -170,6 +172,14 @@ class Client
     /**
      * SERVICES ****************************************************************
      */
+
+	/**
+	 * @return PaymentsService
+	 */
+	public function createAuthenticationService()
+	{
+		return new AuthenticationService($this);
+	}
 
     /**
      * @return PaymentsService
